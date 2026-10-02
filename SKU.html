@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>McDo SKU Generator</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            background-color: #eeeeee;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #b40000;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 400px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #d90000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .form {
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff4b3;
+            text-align: center;
+        }
+
+        .sku {
+            color: #b40000;
+            font-size: 25px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+
+    <a href="/">Receipt Generator</a>
+
+    <a href="/sku">SKU Generator</a>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>🏷️ McDo</h1>
+
+        <p>SKU Generator</p>
+
+    </div>
+
+
+    <div class="form">
+
+        <h2>Create SKU</h2>
+
+
+        <label>Product Category</label>
+
+        <select id="category">
+
+            <option value="FD">Food</option>
+
+            <option value="DR">Drink</option>
+
+            <option value="DS">Dessert</option>
+
+        </select>
+
+
+        <label>Product Name</label>
+
+        <select id="product">
+
+            <option value="FR">Fries</option>
+
+            <option value="NG">Nuggets</option>
+
+            <option value="MF">McFlurry</option>
+
+            <option value="CK">Coke</option>
+
+            <option value="MC">McChicken</option>
+
+            <option value="BM">Burger McDo</option>
+
+        </select>
+
+
+        <label>Stock Quantity</label>
+
+        <input
+            type="number"
+            id="stock"
+            placeholder="Enter stock quantity"
+            min="1"
+        >
+
+
+        <button onclick="generateSKU()">
+
+            Generate SKU
+
+        </button>
+
+
+        <div id="result">
+
+            Your SKU will appear here.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function generateSKU() {
+
+    var category =
+        document.getElementById("category").value;
+
+    var product =
+        document.getElementById("product").value;
+
+    var stock =
+        document.getElementById("stock").value;
+
+
+    if (stock == "" || stock < 1) {
+
+        document.getElementById("result").innerHTML =
+            "Please enter stock quantity.";
+
+        return;
+
+    }
+
+
+    var sku =
+        category + "-" +
+        product + "-" +
+        stock;
+
+
+    document.getElementById("result").innerHTML =
+
+        "Generated SKU:" +
+
+        "<div class='sku'>" +
+
+        sku +
+
+        "</div>";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

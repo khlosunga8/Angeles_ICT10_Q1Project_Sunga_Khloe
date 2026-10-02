@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>McDo Receipt Generator</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #eeeeee;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #b40000;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 400px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #d90000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .menu {
+            padding: 20px;
+        }
+
+        .item {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        #receipt {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a href="/">Receipt Generator</a>
+    <a href="/sku">SKU Generator</a>
+</nav>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🍟 McDo</h1>
+        <p>Receipt Generator</p>
+    </div>
+
+    <div class="menu">
+
+        <h2>Menu</h2>
+
+        <div class="item">
+            <input type="checkbox" value="Fries" data-price="49">
+            Fries - ₱49
+        </div>
+
+        <div class="item">
+            <input type="checkbox" value="Nuggets" data-price="99">
+            Nuggets - ₱99
+        </div>
+
+        <div class="item">
+            <input type="checkbox" value="McFlurry" data-price="79">
+            McFlurry - ₱79
+        </div>
+
+        <div class="item">
+            <input type="checkbox" value="Coke" data-price="49">
+            Coke - ₱49
+        </div>
+
+        <div class="item">
+            <input type="checkbox" value="McChicken" data-price="99">
+            McChicken - ₱99
+        </div>
+
+        <div class="item">
+            <input type="checkbox" value="Burger McDo" data-price="59">
+            Burger McDo - ₱59
+        </div>
+
+        <button onclick="makeReceipt()">
+            Create Receipt
+        </button>
+
+        <div id="receipt">
+            Your receipt will appear here.
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function makeReceipt() {
+
+    var items = document.querySelectorAll(
+        'input[type="checkbox"]:checked'
+    );
+
+    var total = 0;
+
+    if (items.length == 0) {
+        document.getElementById("receipt").innerHTML =
+            "Please select an item.";
+        return;
+    }
+
+    var result = "<h3>Your Receipt</h3>";
+    result += "<ul>";
+
+    items.forEach(function(item) {
+
+        var price = Number(item.dataset.price);
+
+        total = total + price;
+
+        result += "<li>" + item.value +
+                  " - ₱" + price + "</li>";
+    });
+
+    result += "</ul>";
+
+    result += "<b>Total: ₱" + total + "</b>";
+
+    document.getElementById("receipt").innerHTML = result;
+}
+
+</script>
+
+</body>
+</html>
